@@ -1,0 +1,4 @@
+tasks:
+  - before: brew install astronomer/tap/astro
+    command: astro dev init
+  - init: astro dev start
