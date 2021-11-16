@@ -1,6 +1,7 @@
 tasks:
-  - name: initialize dev environment 
-    init: brew install astronomer/tap/astro
+  - name: install astro
+    command: brew install astronomer/tap/astro
+  - name: initializa astro
     command: astro dev init
   - name: start airflow
     command: astro dev start
