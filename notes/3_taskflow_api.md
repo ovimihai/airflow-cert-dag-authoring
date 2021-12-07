@@ -50,7 +50,7 @@
 - Subdags
     - pretty complicated, needs some specific associations
     - behind the scene it is a Sensor in Airflow 2.0, so it waits for the tasks to complete
-        - can use poke_interva
+        - can use poke_interval
         - can use mode='reschedule'
     - have to put task_concurrency within each task in subdag
 - Tasks Groups

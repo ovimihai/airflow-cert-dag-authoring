@@ -46,7 +46,7 @@
     - from airflow.models.baseoperator import chain
     - chain(x1, [x2,x3], [x4,x5], x6)
     - x1 -> x2 ->x4 ->x6
-        \-> x3 ->x5/
+    -     \-> x3 ->x5/
 
 ## Configuration
 
@@ -88,13 +88,12 @@ At Task level
     - define a higher (99) priority for all dags tasks
 
 **Depends on past**
-(1)  [A fail] -> [B] -> [C]
-(2)  [A] -> [B] -> [C]
+- (1)  [A fail] -> [B] -> [C]
+- (2)  [A] -> [B] -> [C]
 - case1: if A depends_on_past on A => (2)[A] will not be triggered
 
-(1)  [A] -> [B fail] -> [C]
-(2)  [A] -> [B] -> [C]
-
+- (1)  [A] -> [B fail] -> [C]
+- (2)  [A] -> [B] -> [C]
 - case2: if B depends_on_past on B => (2)[B] will not be triggered, but (2)[A] will be triggered
 
 - if the tasks will not be triggered will have no status 
@@ -104,8 +103,8 @@ At Task level
 - the tasks are triggered iven if the past task was skipped
 
 **Wait for downstream** - commonly used with depends on past
-(1)  [A] -> [B] -> [C]
-(2)  [A] -> [B] -> [C]
+- (1)  [A] -> [B] -> [C]
+- (2)  [A] -> [B] -> [C]
 
 - if wait for downstream is True
     - (2)[A] will run only if (1)[A] and (1)[B] succeded - only waiting for the direct downstream
@@ -113,9 +112,9 @@ At Task level
 - might be usefull when changing the same resources, to avoid race conditions
 
 ## Sensors
-
+[docs](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/sensors/index.html)
 - an Operator that waits for a condition to be true before moving to the next task
-- eg. FileSensor, DateTimeSensor, 
+- eg. FileSensor, DateTimeSensor, SqlSensor
 - for DateTimeSensor meaningfull arguments
     - target_time - timedalta, can be templated
     - poke_interval - the time it will retry
