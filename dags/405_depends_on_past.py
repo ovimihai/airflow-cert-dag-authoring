@@ -17,7 +17,8 @@ partners = {
 }
 
 default_args = {
-    "start_date": datetime(2021, 1, 1)
+    "start_date": datetime(2021, 1, 1),
+    "retries": 0
 }
 
 @task.python
@@ -63,7 +64,7 @@ def process_tasks(partner_settings):
         dagrun_timeout=timedelta(minutes=10),
         tags=['data_science', 'customer'],
         catchup=False, max_active_runs=1)
-def dag_404_task_priority():
+def dag_405_depends_on_past():
 
     start = DummyOperator(task_id="start")
 
@@ -72,11 +73,12 @@ def dag_404_task_priority():
     for partner, details in partners.items():
         
         @task.python(task_id=f"extract_{partner}", 
+                depends_on_past=True,
                 priority_weight=details['priority'],
                 pool='partner_pool',
                 do_xcom_push=False, multiple_outputs=True)
         def extract(partner_name, partner_path):
-            time.sleep(3)
+            raise ValueError("failed")
             return {"partner_name":partner_name, "partner_path":partner_path}
         
         extracted_values = extract(details['name'], details['path'])
@@ -85,4 +87,4 @@ def dag_404_task_priority():
 
 
 
-dag = dag_404_task_priority()
+dag = dag_405_depends_on_past()

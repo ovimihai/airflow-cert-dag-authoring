@@ -4,6 +4,7 @@ from airflow.operators.python import PythonOperator, BranchPythonOperator
 from airflow.decorators import task, dag
 from airflow.utils.task_group import TaskGroup
 from airflow.operators.dummy import DummyOperator
+from airflow.sensors.date_time import DateTimeSensor
 
 from datetime import datetime, timedelta
 from typing import Dict
@@ -66,6 +67,12 @@ def process_tasks(partner_settings):
 def dag_404_task_priority():
 
     start = DummyOperator(task_id="start")
+
+    delay = DateTimeSensor(
+        task_id="delay",
+        target_time="{{ exection_date.add(hours=9) }}",
+        poke_interval=60 
+    )
 
     storing = DummyOperator(task_id="storing", trigger_rule='none_failed_or_skipped')
 
