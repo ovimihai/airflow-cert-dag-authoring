@@ -14,6 +14,7 @@
 - if the task you are waiting for fails, the sensor task will wait until timeout
 
 ## TriggerDagRunOperator
+- this can be a bettery way than the external Sensor
 - arguments
     - trigger_dag_id
     - execution_date (string|timedelta) - eg. "{{ ds }}"
