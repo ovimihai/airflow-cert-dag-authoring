@@ -30,7 +30,7 @@ with DAG(dag_id='101my_dag',
 
 ## DAG Scheduling 101
 ### Important parameters
-- start_date - Date at whtich tasks start being scheduled
+- start_date - Date at which tasks start being scheduled
 - schedule_interval - interval of time from the min(start_date) as which the DAG is triggered
 - "The DAG [X] starts being scheduled from the start_date and will be triggered **after** every schedule_interval"
 
@@ -56,8 +56,8 @@ schedule_interval=timedelta(days=1)
 2. 01/02 10:00 AM - effectively triggered on 01/03 10:00 AM
 
 ## Task idempotence and determinism
-Determinist - for the same input you get the same output
-Idempotent - if you execute multiple times the same dag you generate the same outcome
+- Determinist - for the same input you get the same output
+- Idempotent - if you execute multiple times the same dag you generate the same outcome
 
 - keep in mind you can execute your task more than once
     - SQL - `CREATE TABLE IF NOT EXISTS ...`
