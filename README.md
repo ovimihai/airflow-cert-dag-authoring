@@ -13,12 +13,5 @@ Course notes for the Astronomer Certification DAG Authoring for Apache Airflow
 
 
 Passed the exam, yey :) <br />
-
-
 <br />
-
 [Certification](https://www.credly.com/badges/7fade49e-55d8-4ee5-8a26-f91a3c8e2648)
-
-<br />
-
-[![Badge](notes/media/badge_dag_authoring__1_.png)](https://www.credly.com/badges/7fade49e-55d8-4ee5-8a26-f91a3c8e2648)
