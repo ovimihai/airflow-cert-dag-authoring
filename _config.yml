@@ -7,7 +7,6 @@ title: Astronomer Airflow DAG Authoring Certification
 description: Course Notes
 
 
-minima:
-  skin: auto
-  social_links:
-    - { platform: linkedin,  user_url: "https://www.linkedin.com/in/ovimihai/" }
+skin: auto
+social_links:
+  - { platform: linkedin,  user_url: "https://www.linkedin.com/in/ovimihai/" }
