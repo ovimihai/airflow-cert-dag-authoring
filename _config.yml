@@ -3,5 +3,5 @@ plugins:
 - jekyll-remote-theme
 - jekyll-menus
 
-title: Astronomer Certification DAG Authoring
+title: Astronomer Airflow DAG Authoring Certification 
 description: Course Notes
