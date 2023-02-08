@@ -1,4 +1,4 @@
-remote_theme: poole/lanyon
+remote_theme: minima
 plugins:
 - jekyll-remote-theme
 - jekyll-menus
