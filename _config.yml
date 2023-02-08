@@ -1,4 +1,4 @@
-remote_theme: minima
+remote_theme: pages-themes/minima@v0.2.0
 plugins:
 - jekyll-remote-theme
 - jekyll-menus
@@ -6,7 +6,7 @@ plugins:
 title: Astronomer Airflow DAG Authoring Certification 
 description: Course Notes
 
-
-skin: auto
-social_links:
-  - { platform: linkedin,  user_url: "https://www.linkedin.com/in/ovimihai/" }
+minima:
+  skin: auto
+  social_links:
+    - { platform: linkedin,  user_url: "https://www.linkedin.com/in/ovimihai/" }
