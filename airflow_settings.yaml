@@ -20,4 +20,4 @@ airflow:
       pool_description:
   variables:
     - variable_name: my_dag_partner
-      variable_value: '{"name":"my favorite partner"}'ßßß
+      variable_value: '{"name":"my favorite partner"}'
