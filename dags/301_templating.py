@@ -11,12 +11,14 @@ class CustomPostgresOperator(PostgresOperator):
 
     template_fields = ('sql', 'parameters',)
 
+    def execute(self, context):
+        return 0
 
 
-def _extract(partnet_name):
-    print(partnet_name)
+def _extract(partner_name):
+    print(partner_name)
 
-with DAG("301_templating", description="DAG in charge of processing custom ",
+with DAG("301_templating", description="Templating in both variables and files. Checkout Render tab ofr each task.",
         start_date=datetime(2021, 1, 1),
         schedule_interval='@daily',
          dagrun_timeout=timedelta(minutes=10),

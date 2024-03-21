@@ -6,8 +6,8 @@
 
 airflow:
   connections:
-    - conn_id:
-      conn_type:
+    - conn_id: postgres_default
+      conn_type: postgres
       conn_host:
       conn_schema:
       conn_login:
@@ -15,8 +15,8 @@ airflow:
       conn_port:
       conn_extra:
   pools:
-    - pool_name:
-      pool_slot:
+    - pool_name: partner_pool
+      pool_slot: 1
       pool_description:
   variables:
     - variable_name:

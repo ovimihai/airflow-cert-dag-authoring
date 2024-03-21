@@ -18,7 +18,7 @@ default_args = {
         dagrun_timeout=timedelta(minutes=10),
         tags=['data_science', 'customer'],
         catchup=False    )
-def dag_305_taskflow():
+def dag_305_subdags():
 
     # add multiple_outputs=True for multiple XCOMs - will also push dictionary
     #   prevent push dictionary with do_xcom_push=False
@@ -30,7 +30,7 @@ def dag_305_taskflow():
 
     process_tasks = SubDagOperator(
         task_id="process_tasks",
-        subdag=subdag_factory("dag_305_taskflow", "process_tasks", default_args)
+        subdag=subdag_factory("dag_304_taskflow", "process_tasks", default_args)
     )
     
     extract() >> process_tasks
