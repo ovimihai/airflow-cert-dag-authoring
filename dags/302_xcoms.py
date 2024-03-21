@@ -13,15 +13,19 @@ class CustomPostgresOperator(PostgresOperator):
 
 
 
-def _extract(ti): # ti = task instance object
-    partner_name = "netflix"
+def _extract(partner_name, **kwargs):
+    print(partner_name)
+    ti = kwargs['ti']
     ti.xcom_push(key="partner_name", value=partner_name)
+    # or unnamed
+    # return partner_name
 
-def _process(ti):
+def _process(**kwargs):
+    ti = kwargs['ti']
     partner_name = ti.xcom_pull(key="partner_name", task_ids="extract")
     print(partner_name)
 
-with DAG("302_xcoms", description="DAG in charge of processing custom ",
+with DAG("302_xcoms", description="DAG with xcom passing example",
         start_date=datetime(2021, 1, 1),
         schedule_interval='@daily',
          dagrun_timeout=timedelta(minutes=10),
@@ -32,22 +36,13 @@ with DAG("302_xcoms", description="DAG in charge of processing custom ",
          extract = PythonOperator(
              task_id="extract",
              python_callable=_extract,
-             op_args=["{{ var.json.my_dag_partner.name }}"]
+             op_args=['{{ var.json.my_dag_partner.name }}'],
+             provide_context=True
          )
 
          process = PythonOperator(
              task_id="process",
              python_callable=_process
-         )
-
-         fetching_data = CustomPostgresOperator(
-             task_id="fetching_data",
-             sql="sql/301_my_request.sql",   # template_ext https://github.com/apache/airflow/blob/main/airflow/providers/postgres/operators/postgres.py#L46
-             parameters={
-                 'next_ds': '{{ next_ds }}',
-                 'prev_ds': '{{ prev_ds }}',
-                 'partner_name': '{{ var.json.my_dag_partner.name }}'
-             }
          )
 
          extract >> process
