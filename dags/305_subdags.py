@@ -30,9 +30,9 @@ def dag_305_subdags():
 
     process_tasks = SubDagOperator(
         task_id="process_tasks",
-        subdag=subdag_factory("dag_304_taskflow", "process_tasks", default_args)
+        subdag=subdag_factory("dag_305_subdags", "process_tasks", default_args)
     )
     
     extract() >> process_tasks
 
-dag = dag_305_taskflow()
+dag = dag_305_subdags()

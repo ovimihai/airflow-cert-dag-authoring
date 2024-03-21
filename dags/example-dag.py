@@ -28,9 +28,9 @@ default_args = {
 
 # Using a DAG context manager, you don't have to specify the dag property of each task
 with DAG('example_dag',
-         start_date=datetime(2019, 1, 1),
+         start_date=datetime(2024, 3, 21),
          max_active_runs=3,
-         schedule_interval=timedelta(minutes=30),  # https://airflow.apache.org/docs/stable/scheduler.html#dag-runs
+         schedule_interval=timedelta(hours=1),  # https://airflow.apache.org/docs/stable/scheduler.html#dag-runs
          default_args=default_args,
          # catchup=False # enable if you don't want historical dag runs to run
          ) as dag:

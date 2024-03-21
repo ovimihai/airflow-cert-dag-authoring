@@ -64,13 +64,14 @@ def process_tasks(partner_settings):
         dagrun_timeout=timedelta(minutes=10),
         tags=['data_science', 'customer'],
         catchup=False, max_active_runs=1)
-def dag_404_task_priority():
+def dag_406_sensors():
 
     start = DummyOperator(task_id="start")
 
     delay = DateTimeSensor(
         task_id="delay",
-        target_time="{{ exection_date.add(hours=9) }}",
+        # change date to match your desiredtime
+        target_time="{{ next_execution_date.replace(hour=17,minute=8) }}",
         poke_interval=60 
     )
 
@@ -87,9 +88,9 @@ def dag_404_task_priority():
             return {"partner_name":partner_name, "partner_path":partner_path}
         
         extracted_values = extract(details['name'], details['path'])
-        start >> extracted_values
+        start >> delay >> extracted_values
         process_tasks(extracted_values) >> storing
 
 
 
-dag = dag_404_task_priority()
+dag = dag_406_sensors()
