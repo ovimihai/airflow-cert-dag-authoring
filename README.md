@@ -10,5 +10,8 @@
 
 ( Passed the [exam](https://www.credly.com/badges/7fade49e-55d8-4ee5-8a26-f91a3c8e2648), yey 😄 )
 
-## Try it
+## Try a ready to user development instance
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ovimihai/airflow-cert-dag-authoring)
+- automatically installs Airflow 2.4.3 and this repo
+- opens webserver port
+- default credentials: admin:admin
